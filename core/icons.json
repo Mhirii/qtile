@@ -1,0 +1,17 @@
+{
+  "icons": {
+    "Alacritty": "",
+    "Kitty": "",
+    "Betterbird": "﫯",
+    "- NVIM": "",
+    "Visual Studio Code": "",
+    "LibreOffice": "",
+    "Firefox": "",
+    "- Wezterm": ""
+  },
+  "multi": "",
+  "busy": "",
+  "ignore": [
+    "Eww"
+  ]
+}

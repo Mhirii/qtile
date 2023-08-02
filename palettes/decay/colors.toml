@@ -1,0 +1,42 @@
+[pkgs.rofi]
+file="colors.rasi"
+template='''
+* {{
+    theme-primary: {primary};
+}}
+'''
+
+[pkgs.eww]
+file="colors.scss"
+template='''
+$accent: {primary};
+'''
+
+[pkgs.dunst]
+file="dunstrc"
+template='''
+[global]
+frame_color = "{primary}"
+'''
+
+[palette]
+bg= "#171a1f"
+bg1= "#1c252c"
+surface= "#22262e"
+surface1= "#384148"
+fg= "#FAE3B0"
+fg1= "#FAE3B0"
+text= "#dee1e6"
+text1= "#e3e6eb"
+red= "#e05f65"
+red1= "#e5646a"
+green= "#78dba9"
+green1= "#94F7C5"
+yellow= "#f1cf8a"
+yellow1= "#f6d48f"
+blue= "#70a5eb"
+blue1= "#75aaf0"
+purple= "#c68aee"
+purple1= "#cb8ff3"
+cyan= "#74bee9"
+cyan1= "#79c3ee"
