@@ -1,0 +1,187 @@
+
+@import "themes/current_theme"
+
+* {
+  /* Default background color */
+  background-color: #00000000;
+  text-color:       var(selected);
+  font: "SpaceMono Nerd Font Bold semibold 10";
+}
+
+
+window {
+  border-color: var(background);
+  border:       0px;
+  border-radius: 8px;
+  background-color: var(background);
+  width: 300px;
+}
+
+mainbox {
+  spacing: 0px;
+  children: [message,listview];
+}
+
+message {
+    enabled:                     true;
+    margin:                      0px 50px;
+    padding:                     15px;
+    border:                      0px solid;
+    border-radius:               8px;
+    border-color:                inherit;
+    background-color:            inherit;
+    text-color:                  inherit;
+    size:                        300em;
+}
+textbox {
+    background-color:            inherit;
+    text-color:                  inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    placeholder-color:           inherit;
+    blink:                       true;
+    markup:                      true;
+    size:                        400em;
+    font: "SpaceMono Nerd Font Bold semibold 15";
+}
+
+error-message {
+    padding:                     12px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                inherit;
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+
+element {
+  background: transparent;
+  children: [ element-icon, element-text ];
+
+}
+element,element-text,element-icon, button {
+    cursor: pointer;
+}
+
+
+listview, message {
+  padding: 0.5em;
+  border-color: #00000000;
+  border:        8px;
+  border-radius: 8px;
+  background-color: #00000000;
+  columns: 1;
+  lines: 4;
+}
+listview {
+  border:       0px 5px 5px 5px;
+  border-radius: 8px;
+  spacing: 10px;
+  background-color: #00000000;
+  border-color:     #00000000;
+  scrollbar: false;
+  
+}
+
+
+element {
+    border:  5px;
+    border-radius: 8px;
+    padding: 5px;
+    border-color: #00000000;
+}
+element-text {
+    background-color: #00000000;
+    text-color:       var(text);
+    font: "SpaceMono Nerd Font Bold";
+    margin:   0px 50px;
+}
+
+element normal.normal {
+    background-color: #00000000;
+    text-color:       var(text);
+}
+element.normal.urgent {
+    background-color: #00000000;
+    text-color:       var(text);
+}
+element.normal.active {
+    background-color: #00000000;
+    text-color:       var(text);
+}
+element.selected.normal {
+    background-color: var(selected);
+    border-color: var(selected);
+    text-color:       var(text-dark);
+}
+element.selected.urgent {
+    background-color: var(selected);
+    border-color: var(selected);
+    text-color:       var(text-dark);
+}
+element.selected.active {
+    background-color: var(selected);
+    border-color: var(selected);
+    text-color:       var(text-dark);
+}
+element.alternate.normal {
+    background-color: #00000000;
+    text-color:       var(text);
+}
+element.alternate.urgent {
+    background-color: #00000000;
+    text-color:       var(text);
+}
+element.alternate.active {
+    background-color: #00000000;
+    text-color:       var(text);
+}
+
+
+element-text.selected.normal {
+    background-color: var(selected);
+    border-color: var(selected);
+    text-color:       var(text-dark);
+    font: "SpaceMono Nerd Font Bold";
+}
+element-text.selected.urgent {
+    background-color: var(selected);
+    border-color: var(selected);
+    text-color:       var(background);
+    font: "SpaceMono Nerd Font Bold";
+}
+element-text.selected.active {
+    background-color: var(selected);
+    border-color: var(selected);
+    text-color:       var(background);
+    font: "SpaceMono Nerd Font Bold";
+}
+
+
+button {
+    text-color: var(selected);
+    border:       0px 0px 5px ;
+    border-color: var(background);
+    border-radius:    8px 8px 0 0;
+    background-color: var(background);
+    horizontal-align: 0.5;
+}
+button selected.normal {
+    text-color: var(selected);
+    margin: 0px;
+    padding: 0px;
+    border:     5px 5px 5px 5px ;
+    border-color: var(background);
+    border-radius:    8px 8px 8px 8px;
+    background-color: var(background);
+}
+
+entry {
+    placeholder: "Search here";
+    placeholder-color: var(selected);
+    border-color: var(background);
+    background-color: var(background);
+    border:        10px;
+    border-radius: 2px 2px 2px 2px;
+    text-color: var(selected);
+  }

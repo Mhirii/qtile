@@ -1,7 +1,12 @@
-from libqtile import layout, hook
+from libqtile import hook
 import os
 import subprocess
+from pathlib import Path
 from core.float import floating_types
+from core.state import State
+
+state = State()
+HOME = f"{Path.home()}/"
 
 
 @hook.subscribe.startup_once
@@ -23,3 +28,11 @@ def set_floating(window):
             or window.window.get_wm_type() in floating_types
     ):
         window.floating = True
+
+
+@hook.subscribe.layout_change
+@hook.subscribe.client_new
+@hook.subscribe.changegroup
+@hook.subscribe.focus_change
+async def _(*args):
+    state.update_state()

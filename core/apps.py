@@ -9,7 +9,7 @@ except FileNotFoundError:
 
 BROWSER = "firefox"
 TERM_EMULATOR = "kitty"
-TERM_EMULATOR_TWO = "sakura"
+TERM_EMULATOR_TWO = "wezterm"
 TERM_EMULATOR_THREE = "alacritty"
 EDITOR = "code"
 PASSWORDMANAGER = "bitwarden-desktop"

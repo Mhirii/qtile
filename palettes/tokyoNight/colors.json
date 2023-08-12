@@ -1,0 +1,25 @@
+{
+  "palette":{
+    "bg": "#1a1b26",
+    "bg1": "#24283b",
+    "surface":"#323749",
+    "surface1":"#414868",
+    "fg":"#565f89",
+    "fg1":"#606c9e",
+    "text":"#a9b1d6",
+    "text1":"#c0caf5",
+    "red":"#f7768e",
+    "red1":"#ed6979",
+    "green":"#9ece6a",
+    "green1":"#94c155",
+    "yellow":"#e0af68",
+    "yellow1":"#d6a253",
+    "blue":"#7aa2f7",
+    "blue1":"#7095e2",
+    "magenta":"#bb9af7",
+    "magenta1":"#b18de2",
+    "cyan":"#7dcfff",
+    "cyan1":"#73c2ea"
+  },
+  "vscode":"Tokyo Night"
+}

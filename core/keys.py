@@ -1,14 +1,11 @@
-import core.groups
-from core.apps import *
 from libqtile.config import Key
 from libqtile.lazy import lazy
-from core.groups import groups
-from core.screen import num_screens, hostname
+from core.settings import apps
+
 
 mod = "mod4"
 mod1 = "alt"
 mod2 = "control"
-
 
 keys = [
     Key(*key)
@@ -26,28 +23,20 @@ keys = [
         #                ░███      ░███
         #                █████     █████
         #                ░░░░░     ░░░░░
-        ([mod], "e", lazy.spawn(FILEMANAGER)),
-        ([mod], "t", lazy.spawn(TERM_EMULATOR)),
-        ([mod, "shift"], "t", lazy.spawn(TERM_EMULATOR_TWO)),
-        ([mod, "control"], "t", lazy.spawn(TERM_EMULATOR_THREE)),
-        ([mod], "c", lazy.spawn(EDITOR)),
-        ([mod], "b", lazy.spawn(BROWSER)),
-        ([mod], "m", lazy.spawn(MUSIC_PLAYER)),
-        ([], "XF86Mail", lazy.spawn(MAIL)),
+        #
+        #
+        ([mod], "e", lazy.spawn(apps["files"])),
+        ([mod], "t", lazy.spawn(apps["terminal"])),
+        ([mod, "shift"], "t", lazy.spawn(apps["terminal_two"])),
+        ([mod, "control"], "t", lazy.spawn(apps["terminal_three"])),
+        ([mod], "c", lazy.spawn(apps["editor"])),
+        ([mod], "b", lazy.spawn(apps["browser"])),
+        ([mod], "m", lazy.spawn(apps["music_player"])),
+        ([], "XF86Mail", lazy.spawn(apps["mail"])),
         ([mod2, "shift"], "Escape", lazy.spawn("lxtask")),
-        #
-        #
-        # ████                                           █████
-        # ░░███                                          ░░███
-        #  ░███   ██████   █████ ████ ████████    ██████  ░███████    ██████  ████████   █████
-        #  ░███  ░░░░░███ ░░███ ░███ ░░███░░███  ███░░███ ░███░░███  ███░░███░░███░░███ ███░░
-        #  ░███   ███████  ░███ ░███  ░███ ░███ ░███ ░░░  ░███ ░███ ░███████  ░███ ░░░ ░░█████
-        #  ░███  ███░░███  ░███ ░███  ░███ ░███ ░███  ███ ░███ ░███ ░███░░░   ░███      ░░░░███
-        #  █████░░████████ ░░████████ ████ █████░░██████  ████ █████░░██████  █████     ██████
-        # ░░░░░  ░░░░░░░░   ░░░░░░░░ ░░░░ ░░░░░  ░░░░░░  ░░░░ ░░░░░  ░░░░░░  ░░░░░     ░░░░░░
-        #
-        ([mod], "r", lazy.spawn(ROFI)),
-        ([mod], "space", lazy.spawn(DMENU)),
+        # ([mod], "r", lazy.spawn("rofi -show drun")),
+        ([mod], "r", lazy.spawn(apps["rofi"])),
+        ([mod], "space", lazy.spawn(apps["dmenu"])),
         #
         #
         #              █████     ███  ████   ███   █████
@@ -59,14 +48,16 @@ keys = [
         #  ░░████████  ░░█████  █████ █████ █████  ░░█████  ░░███████
         #   ░░░░░░░░    ░░░░░  ░░░░░ ░░░░░ ░░░░░    ░░░░░    ░░░░░███
         #                                                    ███ ░███
-        #                                                   ░░██████                                                ░░░░░░
-        ([mod], "v", lazy.spawn(CLIPBOARD)),
-        ([mod], "prior", lazy.spawn(COLORPICKER)),
-        ([mod], "p", lazy.spawn(ROFIPOWER)),
+        #                                                   ░░██████
+        #                                                   ░░░░░░
+        #
+        ([mod], "v", lazy.spawn(apps["clipboard"])),
+        ([mod], "prior", lazy.spawn(apps["colorpicker"])),
+        # ([mod], "p", lazy.spawn(f"{ROFI_BIN}/powermenu.sh")),
         ([mod], "w", lazy.spawn("sh ~/Scripts/wallpaper.sh")),
         ([mod], "Escape", lazy.spawn("xkill")),
-        ([mod, "control"], "p", lazy.spawn("pavucontrol")),
-        ([], "Print", lazy.spawn(SCREENSHOT)),
+        ([mod, "control"], "m", lazy.spawn("pavucontrol")),
+        ([], "Print", lazy.spawn(apps["screenshot"])),
         #
         #
         #  █████ ███ █████ █████████████
@@ -121,9 +112,40 @@ keys = [
             lazy.layout.shrink(),
             lazy.layout.increase_nmaster(),
         ),
+        (
+            [mod, "control"],
+            "right",
+            lazy.layout.grow_right(),
+            lazy.layout.grow(),
+            lazy.layout.increase_ratio(),
+            lazy.layout.delete(),
+        ),
+        (
+            [mod, "control"],
+            "left",
+            lazy.layout.grow_left(),
+            lazy.layout.shrink(),
+            lazy.layout.decrease_ratio(),
+            lazy.layout.add(),
+        ),
+        (
+            [mod, "control"],
+            "up",
+            lazy.layout.grow_up(),
+            lazy.layout.grow(),
+            lazy.layout.decrease_nmaster(),
+        ),
+        (
+            [mod, "control"],
+            "down",
+            lazy.layout.grow_down(),
+            lazy.layout.shrink(),
+            lazy.layout.increase_nmaster(),
+        ),
         # qtile stuff
         ([mod], "Pause", lazy.spawn("betterlockscreen -l")),
         ([mod, "control"], "Pause", lazy.shutdown()),
+        ([mod, "shift"], "Pause", lazy.spawn(apps["rofi_power"])),
         ([mod, "control"], "b", lazy.hide_show_bar()),
         ([mod, "control"], "r", lazy.restart()),
         # window management
@@ -165,6 +187,8 @@ keys = [
 #                                             █████                            ░░██████
 #                                            ░░░░░                              ░░░░░░
 
+
+"""
 if num_screens[hostname] == 2:
     k = [
         "a",
@@ -186,7 +210,7 @@ if num_screens[hostname] == 2:
         "o",
         "p",
     ]
-    g = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1]
+    g = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1]
 else:
     k = ["1", "2", "3", "4", "equal"]
     g = [0, 0, 0, 0, 0]
@@ -202,6 +226,7 @@ for index, i in enumerate(groups):
                 lazy.to_screen(g[index]),
                 desc="Switch to group {}".format(i.name),
             ),
+            Key([mod, mod2], i.name, lazy.group[i.name].toscreen()),
             Key([mod], "Tab", lazy.screen.next_group()),
             Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
             Key(
@@ -219,3 +244,4 @@ for index, i in enumerate(groups):
             ),
         ]
     )
+"""

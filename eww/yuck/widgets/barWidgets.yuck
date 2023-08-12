@@ -1,0 +1,96 @@
+(defwidget launcher []
+  (button
+    :orientation "v"
+    :space-evenly true
+    
+    :class "launcher"
+    :onclick "rofi -show drun &"
+    ""
+  )
+)
+
+
+(defwidget time []
+  (box
+    :orientation "v"
+    :space-evenly true
+    :halign "center"
+    :valign "end"
+    :class "time"
+    (box
+      :orientation "h"
+      (box :class "date" `${clock_date} `)
+      (box
+        (box :class "hour" `${clock_time}`)
+        (box :class "two-dots" ":")
+        (box :class "min" `${clock_minute}`)
+      )
+    )
+  )
+)
+
+(defwidget sep []
+  (box :class "module-2" :vexpand "false" :hexpand "false"
+    (label :class "separ" :text "|")))
+
+
+(defwidget workspaces [screen]
+  (box :class "workspaces"
+    :orientation "h"
+    :space-evenly false
+    :halign "start"
+    (workspaces-icons :screen screen)
+  ))
+
+
+(defwidget workspaces-icons [screen]
+  (box :class "workspaces"
+    :orientation "h"
+    :space-evenly true
+    :halign "center"
+    :valign "center"
+    (box :orientation "h"
+      :spacing 4
+      (for tag in "${wmstate.screens[screen].groups}"
+        (button
+          :class 'ws-button ws-button-${tag.name}
+          ${tag.status=="active" ? "ws-button ws-button-active" :
+          tag.status=="busy" ? "ws-button ws-button-open" :
+          "ws-button-${tag.name}"}'
+          :onclick "xdotool key 'super+${tag.name}'"
+          "${tag.icon}"
+        )
+      )
+    )
+  )
+)
+
+(defwidget v_workspaces [screen]
+  (box :class "workspaces"
+    :orientation "v"
+    :space-evenly false
+    :halign "center"
+    (v_workspaces-icons :screen screen)
+  ))
+
+(defwidget v_workspaces-icons [screen]
+  (box :class "workspaces"
+    :orientation "v"
+    :space-evenly true
+    :halign "center"
+    :valign "center"
+    (box :orientation "v"
+      :spacing 4
+      (for tag in "${wmstate.screens[screen].groups}"
+        (button
+          :class 'ws-button ws-button-${tag.name}
+          ${tag.status=="active" ? "ws-button ws-button-active" :
+          tag.status=="busy" ? "ws-button ws-button-open" :
+          "ws-button-${tag.name}"}'
+          :onclick "xdotool key 'super+${tag.name}'"
+          "${tag.icon}"
+        )
+      )
+    )
+  )
+)

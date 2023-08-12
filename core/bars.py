@@ -2,74 +2,21 @@ from libqtile import widget, qtile
 
 from assets.themes import theme, icon, accent
 from core.apps import TERM_EMULATOR
+from core import settings
 from dbus_next import *
 from libqtile.command import lazy
-
-
-#    
-def seperator_pipe(bg, fg):
-    return widget.TextBox(
-        text="",
-        fontsize=25,
-        padding=0,
-        background=bg,
-        foreground=fg,
-        font="SauceCodeMono Nerd Font",
-    )
-
-
-def seperator_pipe_reverse(bg, fg):
-    return widget.TextBox(
-        text="",
-        fontsize=25,
-        padding=0,
-        background=bg,
-        foreground=fg,
-        font="SauceCodeMono Nerd Font",
-    )
-
-
-def slash(bg, fg):
-    return widget.TextBox(
-        text="",
-        fontsize=25,
-        padding=0,
-        background=bg,
-        foreground=fg,
-        font="SauceCodeMono Nerd Font",
-    )
-
-
-def slash_reverse(bg, fg):
-    return widget.TextBox(
-        text="",
-        fontsize=25,
-        padding=0,
-        background=bg,
-        foreground=fg,
-        font="SauceCodeMono Nerd Font",
-    )
+from core.widgets import *
 
 
 pipes_bar = [
-    widget.Spacer(
-        length=8,
-        background=theme["bg"],
-    ),
-    widget.TextBox(
-        text=" ",
-        fontsize=18,
-        padding=4,
-        background=theme["bg"],
-        foreground=accent,
-        font="SauceCodeMono Nerd Font",
-        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("jgmenu_run")},
-    ),
+    spacer(theme["bg"], 8),
+    archlinux(),
     seperator_pipe(theme["bg1"], theme["bg"]),
     widget.GroupBox(
-        font="JetBrainsMono Nerd Font Bold",
-        fontsize=16,
+        font=settings.font_bold,
+        fontsize=settings.fontsize,
         borderwidth=2,
+        padding=2,
         highlight_method="block",
         background=theme["bg1"],
         inactive=theme["bg2"],
@@ -79,26 +26,24 @@ pipes_bar = [
         foreground="#4B427E",
         this_current_screen_border=theme["bg1"],
         this_screen_border=theme["bg1"],
-        other_current_screen_border=theme["bg1"],
+        other_current_screen_border=theme["bg2"],
         other_screen_border=theme["bg1"],
-        urgent_alert_method="block",
-        urgent_border="#af5555",
+        urgent_alert_method="text",
+        # urgent_border="#181c21",
+        urgent_text="#af5555",
         rounded=True,
-        hide_unused=True,
+        # hide_unused=True,
         disable_drag=True,
     ),
-    widget.Spacer(
-        length=8,
-        background=theme["bg1"],
-    ),
+    spacer(theme["bg1"], 8),
     seperator_pipe(theme["bg"], theme["bg1"]),
     widget.WidgetBox(
         background=theme["bg"],
         close_button_location="left",
-        font="JetbrainsMono Nerd Font",
+        font=settings.font_bold,
         fontshadow=None,
-        fontsize=14,
-        foreground=theme["1"],
+        fontsize=settings.fontsize,
+        foreground=accent,
         mouse_callbacks={},
         #    
         text_closed="  󰙀  ",
@@ -106,10 +51,10 @@ pipes_bar = [
         widgets=[
             widget.CurrentLayout(
                 background=theme["bg"],
-                foreground=theme["1"],
+                foreground=accent,
                 fmt="{}",
-                font="JetBrainsMono Nerd Font Bold",
-                fontsize=14,
+                font=settings.font_bold,
+                fontsize=settings.fontsize,
             ),
             widget.Spacer(
                 length=16,
@@ -118,27 +63,19 @@ pipes_bar = [
             slash(theme["bg"], theme["bg1"]),
             widget.Wallpaper(
                 background=theme["bg"],
-                foreground=theme["1"],
-                font="JetBrainsMono Nerd Font Bold",
-                fontsize=14,
+                foreground=accent,
+                font=settings.font_bold,
+                fontsize=settings.fontsize,
                 fmt=" 󰲍  {}",
-                directory="~/Pictures/Wallpapers/",
+                directory="~/.config/qtile/wallpapers/",
                 max_chars=40,
             ),
         ],
     ),
     seperator_pipe(theme["bg1"], theme["bg"]),
-    widget.Spacer(
-        background=theme["bg1"],
-    ),
-    widget.Spacer(
-        background=theme["bg1"],
-    ),
+    regular_spacer(theme["bg1"]),
     seperator_pipe_reverse(theme["bg1"], theme["bg"]),
-    widget.TextBox(
-        text=" ",
-        background=theme["bg"],
-    ),
+    widget.TextBox(text=" ", background=theme["bg"]),
     widget.Systray(
         padding=4,
         background=theme["bg"],
@@ -150,103 +87,41 @@ pipes_bar = [
         background=theme["bg"],
     ),
     seperator_pipe_reverse(theme["bg"], theme["bg1"]),
-    widget.CPU(
-        background=theme["bg1"],
-        format="  {load_percent}%",
-        foreground=theme["5"],
-        font="JetBrainsMono Nerd Font Bold",
-        fontsize=14,
-        update_interval=5,
-        mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(TERM_EMULATOR + " -e htop")
-        },
-    ),
-    widget.Spacer(
-        length=16,
-        background=theme["bg1"],
-    ),
-    widget.Memory(
-        background=theme["bg1"],
-        # format=" {MemPercent: .0f}{mm}",
-        format=" {MemPercent}%",
-        foreground=theme["5"],
-        font="JetBrainsMono Nerd Font Bold",
-        fontsize=14,
-        update_interval=5,
-        mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(TERM_EMULATOR + " -e htop")
-        },
-    ),
-    widget.Spacer(
-        length=16,
-        background=theme["bg1"],
-    ),
+    spacer(theme["bg1"], 8),
+    cpu_widget(),
+    slash_reverse(theme["bg1"], theme["bg"]),
+    memory_widget(),
+    slash_reverse(theme["bg1"], theme["bg"]),
+    widget.NvidiaSensors( font=settings.font_bold, background=theme["bg1"], foreground=accent, foreground_alert=theme["2"], fontsize=settings.fontsize, ),
+    slash_reverse(theme["bg1"], theme["bg"]),
     widget.Volume(
-        font="JetBrainsMono Nerd Font Bold",
-        emoji=True,
-        theme_path=icon["volume"],
-        fontsize=14,
+        font=settings.font_bold,
         background=theme["bg1"],
+        foreground=accent,
+        fontsize=settings.fontsize,
         mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
     ),
-    widget.Spacer(
-        length=-10,
-        background=theme["bg1"],
-    ),
-    widget.Volume(
-        font="JetBrainsMono Nerd Font Bold",
-        background=theme["bg1"],
-        foreground=theme["5"],
-        fontsize=14,
-        mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
-    ),
-    widget.Spacer(
-        length=8,
-        background=theme["bg1"],
-    ),
+    spacer(theme["bg1"], 8),
     seperator_pipe_reverse(theme["bg1"], theme["bg"]),
     widget.TextBox(
         text=" ",
         background=theme["bg"],
     ),
-    widget.Clock(
-        format="%A %d ",
-        background=theme["bg"],
-        foreground=accent,
-        font="JetBrainsMono Nerd Font Ultra-Bold",
-        fontsize=16,
-    ),
-    widget.Clock(
-        format="%I:%M",
-        background=theme["bg"],
-        foreground=accent,
-        font="JetBrainsMono Nerd Font Ultra-Bold",
-        fontsize=16,
-    ),
-    widget.Spacer(
-        length=8,
-        background=theme["bg"],
-    ),
+    date(),
+    time(),
+    spacer(theme["bg"], 8),
 ]
+
+
 pipes_bar_minimal = [
-    widget.Spacer(
-        length=8,
-        background=theme["bg"],
-    ),
-    widget.TextBox(
-        text=" ",
-        fontsize=18,
-        padding=4,
-        background=theme["bg"],
-        foreground=accent,
-        font="SauceCodeMono Nerd Font",
-        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("jgmenu_run")},
-    ),
+    spacer(theme["bg"], 8),
+    archlinux(),
     seperator_pipe(theme["bg1"], theme["bg"]),
     widget.GroupBox(
-        font="JetBrainsMono Nerd Font Bold",
-        fontsize=16,
+        font=settings.font_bold,
+        fontsize=settings.fontsize,
         borderwidth=2,
+        # padding=2,
         highlight_method="block",
         background=theme["bg1"],
         inactive=theme["bg2"],
@@ -256,26 +131,24 @@ pipes_bar_minimal = [
         foreground="#4B427E",
         this_current_screen_border=theme["bg1"],
         this_screen_border=theme["bg1"],
-        other_current_screen_border=theme["bg1"],
+        other_current_screen_border=theme["bg2"],
         other_screen_border=theme["bg1"],
-        urgent_alert_method="block",
-        urgent_border="#af5555",
+        urgent_alert_method="text",
+        # urgent_border="#181c21",
+        urgent_text="#af5555",
         rounded=True,
         hide_unused=True,
         disable_drag=True,
     ),
-    widget.Spacer(
-        length=8,
-        background=theme["bg1"],
-    ),
+    spacer(theme["bg1"], 8),
     seperator_pipe(theme["bg"], theme["bg1"]),
     widget.WidgetBox(
         background=theme["bg"],
         close_button_location="left",
-        font="JetbrainsMono Nerd Font",
+        font=settings.font_bold,
         fontshadow=None,
-        fontsize=14,
-        foreground=theme["1"],
+        fontsize=settings.fontsize,
+        foreground=accent,
         mouse_callbacks={},
         #    
         text_closed="  󰙀  ",
@@ -283,114 +156,39 @@ pipes_bar_minimal = [
         widgets=[
             widget.CurrentLayout(
                 background=theme["bg"],
-                foreground=theme["1"],
+                foreground=accent,
                 fmt="{}",
-                font="JetBrainsMono Nerd Font Bold",
-                fontsize=14,
-            ),
-            widget.Spacer(
-                length=16,
-                background=theme["bg"],
-            ),
-            slash(theme["bg"], theme["bg1"]),
-            widget.Wallpaper(
-                background=theme["bg"],
-                foreground=theme["1"],
-                font="JetBrainsMono Nerd Font Bold",
-                fontsize=14,
-                fmt=" 󰲍  {}",
-                directory="~/Pictures/Wallpapers/",
-                max_chars=40,
+                font=settings.font_bold,
+                fontsize=settings.fontsize,
             ),
         ],
     ),
     seperator_pipe(theme["bg1"], theme["bg"]),
-    widget.Spacer(
-        background=theme["bg1"],
-    ),
-    widget.Spacer(
-        background=theme["bg1"],
-    ),
+    regular_spacer(theme["bg1"]),
+    regular_spacer(theme["bg1"]),
     seperator_pipe_reverse(theme["bg1"], theme["bg1"]),
-    widget.CPU(
-        background=theme["bg1"],
-        format="  {load_percent}%",
-        foreground=theme["5"],
-        font="JetBrainsMono Nerd Font Bold",
-        fontsize=14,
-        update_interval=5,
-        mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(TERM_EMULATOR + " -e htop")
-        },
-    ),
-    widget.Spacer(
-        length=16,
-        background=theme["bg1"],
-    ),
-    widget.Memory(
-        background=theme["bg1"],
-        # format=" {MemPercent: .0f}{mm}",
-        format=" {MemPercent}%",
-        foreground=theme["5"],
-        font="JetBrainsMono Nerd Font Bold",
-        fontsize=14,
-        update_interval=5,
-        mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(TERM_EMULATOR + " -e htop")
-        },
-    ),
-    widget.Spacer(
-        length=16,
-        background=theme["bg1"],
-    ),
+    spacer(theme["bg1"], 8),
+    cpu_widget(),
+    slash_reverse(theme["bg1"], theme["bg"]),
+    memory_widget(),
+    slash_reverse(theme["bg1"], theme["bg"]),
     widget.Volume(
-        font="JetBrainsMono Nerd Font Bold",
-        emoji=True,
-        theme_path=icon["volume"],
-        fontsize=14,
+        font=settings.font_bold,
         background=theme["bg1"],
+        foreground=accent,
+        fontsize=settings.fontsize,
         mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
     ),
-    widget.Spacer(
-        length=-10,
-        background=theme["bg1"],
-    ),
-    widget.Volume(
-        font="JetBrainsMono Nerd Font Bold",
-        background=theme["bg1"],
-        foreground=theme["5"],
-        fontsize=14,
-        mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
-    ),
-    widget.Spacer(
-        length=8,
-        background=theme["bg1"],
-    ),
+    spacer(theme["bg1"], 8),
     seperator_pipe_reverse(theme["bg1"], theme["bg"]),
     widget.TextBox(
         text=" ",
         background=theme["bg"],
     ),
-    widget.Clock(
-        format="%A %d ",
-        background=theme["bg"],
-        foreground=accent,
-        font="JetBrainsMono Nerd Font Ultra-Bold",
-        fontsize=16,
-    ),
-    widget.Clock(
-        format="%I:%M",
-        background=theme["bg"],
-        foreground=accent,
-        font="JetBrainsMono Nerd Font Ultra-Bold",
-        fontsize=16,
-    ),
-    widget.Spacer(
-        length=8,
-        background=theme["bg"],
-    ),
+    date(),
+    time(),
+    spacer(theme["bg"], 8),
 ]
-
 
 def init_widgets_list():
     widgets_list = pipes_bar

@@ -1,0 +1,80 @@
+(defwidget top []
+  (box
+    :class "top"
+    :halign "start"
+    :valign "center"
+    (launcher)
+  )
+)
+
+(defwidget center [screen]
+  (box
+    :class "center"
+    :halign "center"
+    :valign "center"
+    (workspaces :screen screen)
+  )
+)
+
+
+(defwidget end []
+  (box
+    :class "end"
+    :halign "end"
+    :valign "center"
+    (time)
+  )
+)
+
+(defwidget bar [screen]
+  (box
+    :orientation "h"
+    :space-evenly true
+    :class "bar"
+    (top)
+    (center :screen screen)
+    (end)
+  )
+)
+
+
+(defwidget v_top []
+  (box
+    :class "top"
+    :halign "center"
+    :valign "start"
+    (launcher)
+  )
+)
+
+(defwidget v_center [screen]
+  (box
+    :class "center"
+    :halign "center"
+    :valign "center"
+    (v_workspaces :screen screen)
+  )
+)
+
+
+(defwidget v_end []
+  (box
+    :class "end"
+    :halign "center"
+    :valign "end"
+    (time)
+  )
+)
+
+
+(defwidget v_bar [screen]
+  (box
+    :orientation "v"
+    :space-evenly true
+    :class "bar"
+    (v_top)
+    (v_center :screen screen)
+    (v_end)
+  )
+)
+

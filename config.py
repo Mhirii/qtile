@@ -9,10 +9,11 @@ from core.screen import init_screens
 from core.mouse import mouse
 from libqtile import layout
 import core.hooks
-
 from core.layouts import init_layout_theme, init_layouts
+from libqtile.config import Group, ScratchPad, DropDown
 
 auto_fullscreen = True
+
 
 focus_on_window_activation = "focus"  # or smart
 

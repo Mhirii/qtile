@@ -2,7 +2,10 @@
 
 options=$(echo -e "  Poweroff\n  Restart\n  Suspend\n  Logout")
 
-selected_option=$(echo -e "$options" | rofi -dmenu -i -mesg "Farewell!" -config ~/.config/qtile/rofi/power.rasi)
+selected_option=$(echo -e "$options" | rofi -dmenu -i -mesg "Farewell!" -config ~/.config/qtile/rofi/power.rasi )
+
+uptime="`uptime -p | sed -e 's/up //g'`"
+host=`hostname`
 
 # Handle the selected option
 case $selected_option in

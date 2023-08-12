@@ -47,7 +47,7 @@ decay_dark = {
     "bg": "#101419",
     "bg1": "#181c21",
     "bg2": "#1c252c",
-    "bg3": "#384148",
+    "bg3": "#3c4a4c",
     "text": "#b6beca",
     "text1": "#b6beca",
     "1": "#94f7c5",
@@ -58,9 +58,24 @@ decay_dark = {
     "6": "#e2a6ff",
     "icon_path": "/home/mhiri/.config/qtile/assets/mocha/",
 }
+tokyonight = {
+    "bg": "#16161e",
+    "bg1": "#1a1b26",
+    "bg2": "#24283b",
+    "bg3": "#323749",
+    "text": "#a9b1d6",
+    "text1": "#c0caf5",
+    "1": "#9ece6a",
+    "2": "#f7768e",
+    "3": "#e0af68",
+    "4": "#7aa2f7",
+    "5": "#7dcfff",
+    "6": "#bb9af7",
+    "icon_path": "/home/mhiri/.config/qtile/assets/mocha/",
+}
 
-theme = decay_dark
-accent = theme["5"]
+theme = tokyonight
+accent = theme["4"]
 icon = {
     "slash1": theme["icon_path"] + "1.png",
     "slash2": theme["icon_path"] + "2.png",

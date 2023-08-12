@@ -19,6 +19,8 @@ file_browsers = [
 ]
 music_players = [
     Match(wm_class="Spotify"),
+    Match(title="spotify-tui"),
+    Match(title="cava")
 ]
 mail_clients=[
     Match(wm_class="thunderbirdbeta"),
@@ -32,3 +34,4 @@ git_managers=[
 password_managers=[
     Match(wm_class="Bitwarden"),
 ]
+discord=[Match(wm_class="discord")]

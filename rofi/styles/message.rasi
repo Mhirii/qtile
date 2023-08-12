@@ -1,8 +1,0 @@
-/* Confirm Dialog */
-@import "default.rasi"
-@import "colors.rasi"
-
-
-window {
-  padding: 25px;
-}

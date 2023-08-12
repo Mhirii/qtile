@@ -21,7 +21,7 @@ def init_screens():
     if num_screens[hostname] == 2:
         return [
             Screen(
-                top=bar.Bar(
+                bottom=bar.Bar(
                     widgets=init_widgets_list2(),
                     size=35,
                     opacity=1,
