@@ -8,8 +8,8 @@ except FileNotFoundError:
     color = {"name": "mauve", "hex": "#DDB6F2"}
 
 BROWSER = "firefox"
-TERM_EMULATOR = "kitty"
-TERM_EMULATOR_TWO = "wezterm"
+TERM_EMULATOR = "wezterm"
+TERM_EMULATOR_TWO = "kitty"
 TERM_EMULATOR_THREE = "alacritty"
 EDITOR = "code"
 PASSWORDMANAGER = "bitwarden-desktop"

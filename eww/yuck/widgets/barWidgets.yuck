@@ -18,12 +18,14 @@
     :valign "end"
     :class "time"
     (box
-      :orientation "h"
-      (box :class "date" `${clock_date} `)
+      :orientation "v"
       (box
+        :orientation "v"
         (box :class "hour" `${clock_time}`)
-        (box :class "two-dots" ":")
+        ;; (box :class "two-dots" ":")
         (box :class "min" `${clock_minute}`)
+      )
+      (box :class "date" `${clock_date} `
       )
     )
   )

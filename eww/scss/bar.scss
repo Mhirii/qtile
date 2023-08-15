@@ -10,32 +10,32 @@ window > .bar {
   .top{
     background-color: $bg-alt;
     margin: 0.25rem 0.5rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0rem;
     border-radius: 4px;
   }
   .center{
     background-color: $bg-alt;
     margin: 0.25rem 0.5rem;
-    padding: 0rem 0.5rem;
+    padding: 0rem 0rem;
     border-radius: 4px;
   }
   .end{
     background-color: $bg-alt;
     margin: 0.25rem 0.5rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0rem;
     border-radius: 4px;
   }
   .launcher{
     font-size: 20pt;
     color: $blue;
-    padding: 0rem 0.4rem;
+    padding: 0rem 0rem;
   }
   .time{
-    font-size: 12pt;
+    font-size: 20pt;
     color: $blue;
     .hour{
       font-weight: 800;
-      margin-right: -4px;
+      // margin-right: -4px;
     }
     .two-dots{
       color: $fg-alt;
@@ -46,9 +46,10 @@ window > .bar {
     .min{
       color: $blue;
       font-weight: 800;
-      margin-left: -4px;
+      // margin-left: -4px;
     }
     .date{
+      font-size: 9pt;
       color: $fg-alt;
       font-weight: 800;
     }

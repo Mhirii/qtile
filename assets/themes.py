@@ -1,32 +1,42 @@
+from core.utils import change_theme
+
+
 nord = {
+    "name": "nord",
     "bg": "#2A2F3A",
     "bg1": "#3B4252",
     "bg2": "#687591",
+    "bg3": "#7f8ca9",
     "text": "#C8CED9",
     "text1": "#8E95A4",
-    "1": "#88c0d0",
-    "2": "#D06F79",
+    "1": "#D06F79",
+    "2": "#a3be8c",
     "3": "#ebcb8b",
-    "4": "#a3be8c",
+    "4": "#88c0d0",
     "5": "#b48ead",
+    "6": "#8fbcbb",
     "icon_path": "/home/mhiri/.config/qtile/assets/nord/",
+    "vscode": "Nord",
+    "kitty": "Nord",
 }
 one_dark = {
+    "name": "onedark",
     "bg": "#21252b",
-    "bg1": "#282c33",
-    "bg2": "#3e4452",
-    "bg3": "#464b59",
+    "bg1": "#282c34",
+    "bg2": "#313640",
+    "bg3": "#5a5f6d",
     "text": "#abb2bf",
     "text1": "#bbc2cf",
-    "1": "#55b6c2",
-    "2": "#e06b74",
-    "3": "#e5c07a",
-    "4": "#c778dd",
-    "5": "#62aeef",
-    "6": "#98c379",
+    "1": "#e06c75",
+    "2": "#98c379",
+    "3": "#e5c07b",
+    "4": "#61afef",
+    "5": "#c678dd",
+    "6": "#56b6c2",
     "icon_path": "/home/mhiri/.config/qtile/assets/mocha/",
+    "vscode": "One Dark Pro Flat",
+    "kitty": "One Dark",
 }
-
 
 mocha = {
     "bg": "#11111b",
@@ -59,6 +69,7 @@ decay_dark = {
     "icon_path": "/home/mhiri/.config/qtile/assets/mocha/",
 }
 tokyonight = {
+    "name": "tokyonight",
     "bg": "#16161e",
     "bg1": "#1a1b26",
     "bg2": "#24283b",
@@ -72,10 +83,16 @@ tokyonight = {
     "5": "#7dcfff",
     "6": "#bb9af7",
     "icon_path": "/home/mhiri/.config/qtile/assets/mocha/",
+    "vscode": "Tokyo Night",
+    "kitty": "Tokyo Night",
 }
 
-theme = tokyonight
+theme = one_dark
+theme_name = theme["name"]
 accent = theme["4"]
+error = theme["1"]
+success = theme["2"]
+warning = theme["3"]
 icon = {
     "slash1": theme["icon_path"] + "1.png",
     "slash2": theme["icon_path"] + "2.png",
@@ -88,3 +105,5 @@ icon = {
     "volume": theme["icon_path"] + "Volume/",
     "ram": theme["icon_path"] + "Misc/ram.png",
 }
+
+change_theme(theme, accent, error)

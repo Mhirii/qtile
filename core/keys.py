@@ -1,7 +1,8 @@
 from libqtile.config import Key
 from libqtile.lazy import lazy
 from core.settings import apps
-
+from core.utils import change_theme
+from assets import themes
 
 mod = "mod4"
 mod1 = "alt"
@@ -54,7 +55,7 @@ keys = [
         ([mod], "v", lazy.spawn(apps["clipboard"])),
         ([mod], "prior", lazy.spawn(apps["colorpicker"])),
         # ([mod], "p", lazy.spawn(f"{ROFI_BIN}/powermenu.sh")),
-        ([mod], "w", lazy.spawn("sh ~/Scripts/wallpaper.sh")),
+        # ([mod], "w", change_theme(themes.theme, themes.accent, themes.error)),
         ([mod], "Escape", lazy.spawn("xkill")),
         ([mod, "control"], "m", lazy.spawn("pavucontrol")),
         ([], "Print", lazy.spawn(apps["screenshot"])),

@@ -1,0 +1,25 @@
+{
+  "palette":{
+    "bg": "#21252b",
+    "bg1": "#282c34",
+    "surface":"#313640",
+    "surface1":"#464b59",
+    "fg":"#5a5f6d",
+    "fg1":"#6c7281",
+    "text":"#c5ccd9",
+    "text1":"#bbc2cf",
+    "red":"#e06c75",
+    "red1":"#e06c75",
+    "green":"#98c379",
+    "green1":"#98c379",
+    "yellow":"#e5c07b",
+    "yellow1":"#e5c07b",
+    "blue":"#61afef",
+    "blue1":"#61afef",
+    "magenta":"#c678dd",
+    "magenta1":"#c678dd",
+    "cyan":"#56b6c2",
+    "cyan1":"#56b6c2"
+  },
+  "vscode":"One Dark Pro"
+}

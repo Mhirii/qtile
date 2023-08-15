@@ -1,9 +1,11 @@
-* {
-  background: #1a1b26e6;
-  background-alt: #24283bb4;
-  text: #a9b1d6ff;
-  text-dark: #1a1b26;
-  selected: #7aa2f7ff;
-  active: #565f89ff;
-  urgent: #f7768eff;
-}
+
+    *{
+    background: #1a1b26e6;
+    background-alt: #24283bb4;
+    text: #a9b1d6ff;
+    text-dark: #1a1b26ff;
+    selected: #7aa2f7ff;
+    active: #323749ff;
+    urgent: #9ece6aff;
+    }
+    

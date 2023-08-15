@@ -5,12 +5,12 @@
   :geometry (geometry
     :x "0px"
     :y "0px"
-    :width "1584"
-    :height "40px"
-    :anchor "top center"
+    :width "40px"
+    :height "860px"
+    :anchor "left center"
   )
   :windowtype "dock"
-  :reserve (struts :distance "48px" :side "top")
+  :reserve (struts :distance "48px" :side "left")
   :wm-ignore false
   (bar :screen 0)
 )
@@ -22,12 +22,12 @@
   :geometry (geometry
     :x "0px"
     :y "0px"
-    :width "1584"
-    :height "32px"
-    :anchor "top center"
+    :width "40px"
+    :height "860px"
+    :anchor "left center"
   )
   :windowtype "dock"
-  :reserve (struts :distance "40px" :side "top")
+  :reserve (struts :distance "48px" :side "right")
   :wm-ignore false
   (bar :screen 1)
 )
