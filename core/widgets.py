@@ -1,6 +1,5 @@
 from libqtile import widget, qtile
 from assets.themes import theme, accent
-from core.apps import TERM_EMULATOR
 from core import settings
 
 def seperator_pipe(bg, fg):
@@ -82,7 +81,7 @@ def cpu_widget():
         fontsize=settings.fontsize,
         update_interval=5,
         mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(TERM_EMULATOR + " -e htop")
+            "Button1": lambda: qtile.cmd_spawn(settings.apps["terminal"] + " -e htop")
         },
     )
 
@@ -96,7 +95,7 @@ def memory_widget():
         fontsize=settings.fontsize,
         update_interval=5,
         mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(TERM_EMULATOR + " -e htop")
+            "Button1": lambda: qtile.cmd_spawn(settings.apps["terminal"] + " -e htop")
         },
     )
 

@@ -1,7 +1,9 @@
-from libqtile import hook
 import os
 import subprocess
 from pathlib import Path
+
+from libqtile import hook
+
 from core.float import floating_types
 from core.state import State
 
@@ -13,6 +15,7 @@ HOME = f"{Path.home()}/"
 def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/scripts/autostart.sh"])
+    subprocess.call([home + "/.screenlayout/dual.sh"])
 
 
 @hook.subscribe.startup

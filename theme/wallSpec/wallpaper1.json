@@ -1,0 +1,6 @@
+{
+  "wallpaper_path": "path/to/wallpaper.jpg",
+  "colors": "path/to/pywal/colors.json",
+  "primary_color": "",
+  "dimensions": "1600x900"
+}

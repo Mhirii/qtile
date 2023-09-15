@@ -1,12 +1,15 @@
-from libqtile import widget, qtile
-
-from assets.themes import theme, icon, accent
-from core.apps import TERM_EMULATOR
-from core import settings
 from dbus_next import *
+from libqtile import qtile, widget
 from libqtile.command import lazy
+
+import assets.themes
+from assets.themes import accent, cycle_theme, theme, theme_name
+from core import settings
 from core.widgets import *
 
+
+def test_function():
+    lazy.restart()
 
 pipes_bar = [
     spacer(theme["bg"], 8),
@@ -46,18 +49,23 @@ pipes_bar = [
         foreground=accent,
         mouse_callbacks={},
         #    
-        text_closed="  󰙀  ",
-        text_open="  󰙀 ",
+        text_closed="    ",
+        text_open="   ",
         widgets=[
+            slash(theme["bg"], theme["bg1"]),
+            widget.Spacer(
+                length=8,
+                background=theme["bg"],
+            ),
             widget.CurrentLayout(
                 background=theme["bg"],
                 foreground=accent,
-                fmt="{}",
+                fmt="󰙀 {}",
                 font=settings.font_bold,
                 fontsize=settings.fontsize,
             ),
             widget.Spacer(
-                length=16,
+                length=8,
                 background=theme["bg"],
             ),
             slash(theme["bg"], theme["bg1"]),
@@ -67,9 +75,24 @@ pipes_bar = [
                 font=settings.font_bold,
                 fontsize=settings.fontsize,
                 fmt=" 󰲍  {}",
-                directory="~/.config/qtile/wallpapers/",
+                directory=f"~/.config/qtile/wallpapers/{theme['name']}",
                 max_chars=40,
             ),
+            widget.Spacer(
+                length=8,
+                background=theme["bg"],
+            ),
+            slash(theme["bg"], theme["bg1"]),
+            widget.TextBox(
+                text=f"  {theme_name}",
+                fontsize=settings.fontsize,
+                # padding=4,
+                background=theme["bg"],
+                foreground=accent,
+                font=settings.font_bold,
+                # mouse_callbacks={"Button1": cycle_theme()},
+                mouse_callbacks={"Button1": test_function()},
+            )
         ],
     ),
     seperator_pipe(theme["bg1"], theme["bg"]),

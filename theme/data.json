@@ -1,0 +1,10 @@
+{
+  "wallpapers": [
+    "path/to/spec/example1.json",
+    "path/to/spec/example2.json"
+  ],
+  "themes": [
+    "path/to/themes/example1.json",
+    "path/to/themes/example2.json"
+  ]
+}

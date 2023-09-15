@@ -28,7 +28,7 @@ main = None
 
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = False
+cursor_warp = True 
 floating_layout = layout.Floating(
     float_rules(),
     fullscreen_border_width=0,

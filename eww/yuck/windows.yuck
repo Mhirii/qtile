@@ -1,4 +1,0 @@
-(include "yuck/windows/bar.yuck")
-; (include "yuck/windows/powermenu.yuck")
-; (include "yuck/windows/volume.yuck")
-; (include "yuck/windows/media.yuck")

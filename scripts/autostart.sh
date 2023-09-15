@@ -19,7 +19,7 @@ sleep 1
 
 
 #starting utility applications at boot time
-lxsession &
+# lxsession &
 run nm-applet &
 run pamac-tray &
 numlockx on &
@@ -50,6 +50,7 @@ clipster -d &
 #run thunar &
 #run dropbox &
 #run insync start &
-#run spotify &
+#run spotify &X
 #run atom &
 #run telegram-desktop &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & disown

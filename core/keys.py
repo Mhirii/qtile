@@ -1,8 +1,7 @@
 from libqtile.config import Key
 from libqtile.lazy import lazy
+
 from core.settings import apps
-from core.utils import change_theme
-from assets import themes
 
 mod = "mod4"
 mod1 = "alt"
@@ -38,7 +37,7 @@ keys = [
         # ([mod], "r", lazy.spawn("rofi -show drun")),
         ([mod], "r", lazy.spawn(apps["rofi"])),
         ([mod], "space", lazy.spawn(apps["dmenu"])),
-        #
+        #Q
         #
         #              █████     ███  ████   ███   █████
         #             ░░███     ░░░  ░░███  ░░░   ░░███
@@ -55,7 +54,6 @@ keys = [
         ([mod], "v", lazy.spawn(apps["clipboard"])),
         ([mod], "prior", lazy.spawn(apps["colorpicker"])),
         # ([mod], "p", lazy.spawn(f"{ROFI_BIN}/powermenu.sh")),
-        # ([mod], "w", change_theme(themes.theme, themes.accent, themes.error)),
         ([mod], "Escape", lazy.spawn("xkill")),
         ([mod, "control"], "m", lazy.spawn("pavucontrol")),
         ([], "Print", lazy.spawn(apps["screenshot"])),
@@ -166,83 +164,5 @@ keys = [
         ([], "XF86AudioNext", lazy.spawn("playerctl next")),
         ([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
         ([], "XF86AudioStop", lazy.spawn("playerctl stop")),
-        # Key(
-        #     ["mod1", "control"],
-        #     "o",
-        #     lazy.spawn(home + "/.config/qtile/scripts/picom-toggle.sh"),
-        # ),
-        # Key([], "Print", lazy.spawn("flameshot full -p " + home + "/Pictures/Screenshots")),
     ]
 ]
-#
-#
-#    █████████                                             █████
-#   ███░░░░░███                                           ░░███
-#  ███     ░░░  ████████   ██████  █████ ████ ████████     ░███ █████  ██████  █████ ████  █████
-# ░███         ░░███░░███ ███░░███░░███ ░███ ░░███░░███    ░███░░███  ███░░███░░███ ░███  ███░░
-# ░███    █████ ░███ ░░░ ░███ ░███ ░███ ░███  ░███ ░███    ░██████░  ░███████  ░███ ░███ ░░█████
-# ░░███  ░░███  ░███     ░███ ░███ ░███ ░███  ░███ ░███    ░███░░███ ░███░░░   ░███ ░███  ░░░░███
-#  ░░█████████  █████    ░░██████  ░░████████ ░███████     ████ █████░░██████  ░░███████  ██████
-#   ░░░░░░░░░  ░░░░░      ░░░░░░    ░░░░░░░░  ░███░░░     ░░░░ ░░░░░  ░░░░░░    ░░░░░███ ░░░░░░
-#                                             ░███                              ███ ░███
-#                                             █████                            ░░██████
-#                                            ░░░░░                              ░░░░░░
-
-
-"""
-if num_screens[hostname] == 2:
-    k = [
-        "a",
-        "s",
-        "d",
-        "f",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "0",
-        "u",
-        "i",
-        "o",
-        "p",
-    ]
-    g = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1]
-else:
-    k = ["1", "2", "3", "4", "equal"]
-    g = [0, 0, 0, 0, 0]
-
-for index, i in enumerate(groups):
-    keys.extend(
-        [
-            # CHANGE WORKSPACES
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(g[index]),
-                lazy.to_screen(g[index]),
-                desc="Switch to group {}".format(i.name),
-            ),
-            Key([mod, mod2], i.name, lazy.group[i.name].toscreen()),
-            Key([mod], "Tab", lazy.screen.next_group()),
-            Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
-            Key(
-                ["mod1"],
-                "Tab",
-                lazy.group.next_window(),
-            ),
-            Key(["mod1", "shift"], "Tab", lazy.screen.prev_group()),
-            Key([mod, "mod1"], i.name, lazy.window.togroup(i.name)),
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name),
-                lazy.group[i.name].toscreen(g[index]),
-            ),
-        ]
-    )
-"""

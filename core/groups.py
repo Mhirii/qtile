@@ -1,5 +1,4 @@
 from libqtile.config import Group, ScratchPad, DropDown
-from core import apps
 from core.matches import (
     code_editors,
     browsers,
@@ -20,10 +19,10 @@ from core.screen import num_screens, hostname
 from core.keys import keys, mod, mod1, mod2
 
 groups = [
-    Group("a", label="A", init=True, spawn=apps.TERM_EMULATOR),
+    Group("a", label="A", init=True ),
     Group("s", label="S", init=True),
-    Group("d", label="D", init=True, spawn=apps.EDITOR),
-    Group("f", label="F", init=True, spawn=apps.FILEMANAGER),
+    Group("d", label="D", init=True),
+    Group("f", label="F", init=True),
     Group("1", label="Ⅰ", init=True),
     Group("2", label="Ⅱ", init=True),
     Group("3", label="Ⅲ", init=True),
@@ -62,6 +61,6 @@ for index, i in enumerate(groups):
                 i.name,
                 lazy.window.togroup(i.name),
                 lazy.group[i.name].toscreen(workspaces[index]['screen']),
-            ),
+            ),            
         ]
     )

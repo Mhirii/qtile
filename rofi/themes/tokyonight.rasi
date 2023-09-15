@@ -5,7 +5,7 @@
     text: #a9b1d6ff;
     text-dark: #1a1b26ff;
     selected: #7aa2f7ff;
-    active: #323749ff;
+    active: #414868ff;
     urgent: #9ece6aff;
     }
     

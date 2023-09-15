@@ -1,42 +1,5 @@
 from core.utils import change_theme
-
-
-nord = {
-    "name": "nord",
-    "bg": "#2A2F3A",
-    "bg1": "#3B4252",
-    "bg2": "#687591",
-    "bg3": "#7f8ca9",
-    "text": "#C8CED9",
-    "text1": "#8E95A4",
-    "1": "#D06F79",
-    "2": "#a3be8c",
-    "3": "#ebcb8b",
-    "4": "#88c0d0",
-    "5": "#b48ead",
-    "6": "#8fbcbb",
-    "icon_path": "/home/mhiri/.config/qtile/assets/nord/",
-    "vscode": "Nord",
-    "kitty": "Nord",
-}
-one_dark = {
-    "name": "onedark",
-    "bg": "#21252b",
-    "bg1": "#282c34",
-    "bg2": "#313640",
-    "bg3": "#5a5f6d",
-    "text": "#abb2bf",
-    "text1": "#bbc2cf",
-    "1": "#e06c75",
-    "2": "#98c379",
-    "3": "#e5c07b",
-    "4": "#61afef",
-    "5": "#c678dd",
-    "6": "#56b6c2",
-    "icon_path": "/home/mhiri/.config/qtile/assets/mocha/",
-    "vscode": "One Dark Pro Flat",
-    "kitty": "One Dark",
-}
+from libqtile.lazy import lazy
 
 mocha = {
     "bg": "#11111b",
@@ -68,12 +31,31 @@ decay_dark = {
     "6": "#e2a6ff",
     "icon_path": "/home/mhiri/.config/qtile/assets/mocha/",
 }
+nord = {
+    "name": "nord",
+    "bg": "#2A2F3A",
+    "bg1": "#3B4252",
+    "bg2": "#687591",
+    "bg3": "#7f8ca9",
+    "text": "#C8CED9",
+    "text1": "#8E95A4",
+    "1": "#D06F79",
+    "2": "#a3be8c",
+    "3": "#ebcb8b",
+    "4": "#88c0d0",
+    "5": "#b48ead",
+    "6": "#8fbcbb",
+    "icon_path": "/home/mhiri/.config/qtile/assets/nord/",
+    "vscode": "Nord",
+    "kitty": "Nord",
+}
 tokyonight = {
     "name": "tokyonight",
     "bg": "#16161e",
     "bg1": "#1a1b26",
+    # "bg2": "#323749",
     "bg2": "#24283b",
-    "bg3": "#323749",
+    "bg3": "#414868",
     "text": "#a9b1d6",
     "text1": "#c0caf5",
     "1": "#9ece6a",
@@ -86,24 +68,43 @@ tokyonight = {
     "vscode": "Tokyo Night",
     "kitty": "Tokyo Night",
 }
+onedark = {
+    "name": "onedark",
+    "bg": "#21252b",
+    "bg1": "#282c34",
+    "bg2": "#313640",
+    "bg3": "#5a5f6d",
+    "text": "#abb2bf",
+    "text1": "#bbc2cf",
+    "1": "#e06c75",
+    "2": "#98c379",
+    "3": "#e5c07b",
+    "4": "#61afef",
+    "5": "#c678dd",
+    "6": "#56b6c2",
+    "icon_path": "/home/mhiri/.config/qtile/assets/mocha/",
+    "vscode": "One Dark Pro Flat",
+    "kitty": "One Dark",
+}
 
-theme = one_dark
+def cycle_theme():
+    global theme_index, theme, theme_name, accent, error, success, warning
+    theme_index = (theme_index + 1) % len(themes)
+    theme = themes[theme_index]
+    theme_name = theme["name"]
+    lazy.restart()
+
+
+themes = [tokyonight, onedark]
+theme_index = 0
+
+theme = themes[theme_index]
 theme_name = theme["name"]
 accent = theme["4"]
 error = theme["1"]
 success = theme["2"]
 warning = theme["3"]
-icon = {
-    "slash1": theme["icon_path"] + "1.png",
-    "slash2": theme["icon_path"] + "2.png",
-    "circle1": theme["icon_path"] + "3.png",
-    "circle2": theme["icon_path"] + "4.png",
-    "wave1": theme["icon_path"] + "5.png",
-    "wave2": theme["icon_path"] + "6.png",
-    "launch": theme["icon_path"] + "launch_Icon.png",
-    "layout": theme["icon_path"] + "layout.png",
-    "volume": theme["icon_path"] + "Volume/",
-    "ram": theme["icon_path"] + "Misc/ram.png",
-}
+
+
 
 change_theme(theme, accent, error)
